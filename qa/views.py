@@ -61,7 +61,7 @@ class AnswerCreateAPIView(generics.CreateAPIView):
     @override
     def perform_create(self, serializer):
         question = get_object_or_404(Question, pk=self.kwargs["question_id"])
-        serializer.save(question=question, user=self.request.user)
+        serializer.save(question=question)
 
 
 @extend_schema(tags=["Answers"])

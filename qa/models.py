@@ -1,7 +1,4 @@
-from django.contrib.auth import get_user_model
 from django.db import models
-
-User = get_user_model()
 
 
 class TimeStampModel(models.Model):
@@ -27,10 +24,5 @@ class Answer(TimeStampModel):
         related_name="answers",
         help_text="Related question",
     )
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="answers",
-        help_text="Author of the answer",
-    )
+    user = models.UUIDField(unique=True, help_text="UUID of author")
     text = models.TextField(blank=False, help_text="Answer content")

@@ -27,7 +27,7 @@ class Answer(TimeStampModel):
         related_name="answers",
         help_text="Related question",
     )
-    user = models.UUIDField(unique=True, help_text="UUID of author")
+    user = models.UUIDField(help_text="UUID of author")
     text = models.TextField(blank=False, help_text="Answer content")
 
     def __str__(self) -> str:

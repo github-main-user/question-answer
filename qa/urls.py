@@ -15,17 +15,17 @@ urlpatterns = [
         "questions/", QuestionListCreateAPIView.as_view(), name="question-list-create"
     ),
     path(
-        "questions/<int:id>/",
+        "questions/<int:pk>/",
         QuestionRetrieveDestroyAPIView.as_view(),
         name="question-detail",
     ),
     path(
-        "questions/<int:question_id>/answers/",
+        "questions/<int:question_pk>/answers/",
         AnswerCreateAPIView.as_view(),
         name="answer-create",
     ),
     path(
-        "answers/<int:id>/",
+        "answers/<int:pk>/",
         AnswerRetrieveDestroyAPIView.as_view(),
         name="answer-detail",
     ),

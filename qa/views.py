@@ -3,7 +3,6 @@ from typing import override
 from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated
 
 from .models import Answer, Question
 from .serializers import (
@@ -49,18 +48,17 @@ class QuestionRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
 @extend_schema_view(
     post=extend_schema(
         summary="Create a new answer for a specific question",
-        description="Create a new answer for a question identified by 'question_id'."
+        description="Create a new answer for a question identified by 'question_pk'."
         "Requires authentication.",
     ),
 )
 class AnswerCreateAPIView(generics.CreateAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
-    permission_classes = [IsAuthenticated]
 
     @override
     def perform_create(self, serializer):
-        question = get_object_or_404(Question, pk=self.kwargs["question_id"])
+        question = get_object_or_404(Question, pk=self.kwargs["question_pk"])
         serializer.save(question=question)
 
 

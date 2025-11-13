@@ -4,8 +4,6 @@ A simple API service for creating questions and answers, built with Django and D
 
 ## Project Description
 
-The service provides endpoints for managing questions and their corresponding answers. It is built following the requirements specified in the `task.md` file.
-
 Key features:
 - Create, list, retrieve, and delete questions.
 - Create, retrieve, and delete answers for specific questions.
@@ -61,7 +59,7 @@ Key features:
 
     Use Docker Compose to build and run the services:
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
 
     The application will be available at `http://localhost:8000`.
@@ -103,4 +101,12 @@ To run the tests, you can execute the `pytest` command inside the running `web` 
 
 ```bash
 docker compose exec web pytest
+```
+
+## Loading Initial Data
+
+To populate the database with the sample data from `fixtures.json`, run the following command:
+
+```bash
+docker compose run --rm web python manage.py loaddata fixtures.json
 ```
